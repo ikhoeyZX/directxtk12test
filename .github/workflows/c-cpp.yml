@@ -15,6 +15,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: cmake
       run: |
+         cd DirectXTK12
          cmake --preset=x64-Debug
          cmake build out\build\x64-Debug
          ctest --preset=x64-Debug
