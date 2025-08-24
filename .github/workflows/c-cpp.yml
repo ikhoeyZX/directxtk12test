@@ -15,8 +15,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: cmake
       run: |
+         cd ..
+         git clone https://github.com/Microsoft/DirectXTK12.git
          cd DirectXTK12
-         cmake --preset=x64-Debug
+         git clone https://github.com/walbourn/directxtk12test.git Tests
+         git clone https://github.com/Microsoft/DirectXTK12.wiki.git wikicmake --preset=x64-Debug
          cmake build out\build\x64-Debug
          ctest --preset=x64-Debug
     - name: make check
