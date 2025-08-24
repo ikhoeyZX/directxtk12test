@@ -9,15 +9,20 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
+    - name: cmake
+      run: |
+         cmake --preset=x64-Debug
+         cmake build out\build\x64-Debug
+         ctest --preset=x64-Debug
     - name: make check
       run: make check
     - name: make distcheck
       run: make distcheck
+    - uses: actions/upload-artifact@v4
+      with:
+          name: test.zip
+          path: out
